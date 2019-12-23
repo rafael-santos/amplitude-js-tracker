@@ -1,0 +1,37 @@
+{
+  "name": "amplitude-js-tracker",
+  "version": "0.0.1",
+  "description": "An Amplitude Analytics library for easy tracking user events based on amplitude-js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "tsc",
+    "prepare": "npm run test && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafael-santos/amplitude-js-tracker.git"
+  },
+  "keywords": [
+    "amplitude",
+    "event",
+    "tracking",
+    "analytics"
+  ],
+  "author": "Rafael Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rafael-santos/amplitude-js-tracker/issues"
+  },
+  "homepage": "https://github.com/rafael-santos/amplitude-js-tracker#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.24",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
+  }
+}
