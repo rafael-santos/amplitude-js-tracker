@@ -6,10 +6,12 @@
     "strict": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "target": "es5",
     "outDir": "./dist",
-    "lib": ["es2017", "es7", "es6", "dom"],
+    "lib": ["esnext", "es7", "es6", "dom"],
     "baseUrl": ".",
+    "types": ["jest"],
     "paths": {
       "@/*": ["src/*"]
     }
@@ -19,5 +21,5 @@
     "out": "docs"
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules", "dist", "tests/**/*"]
 }
