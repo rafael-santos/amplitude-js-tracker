@@ -4,6 +4,9 @@
   "description": "An Amplitude Analytics library for easy tracking user events based on amplitude-js",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test:unit": "jest --coverage",
     "test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
