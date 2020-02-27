@@ -1,12 +1,12 @@
 import amplitude from "amplitude-js";
 
-export const DEFAULT_ON_CLICK_CLASS: string = "js-amplitude-click";
-export const DEFAULT_ON_CLICK_SELECTOR: string = `.${DEFAULT_ON_CLICK_CLASS}`;
-export const DEFAULT_ON_HOVER_CLASS: string = "js-amplitude-hover";
-export const DEFAULT_ON_HOVER_SELECTOR: string = `.${DEFAULT_ON_HOVER_CLASS}`;
-export const DEFAULT_ON_VIEWED_CLASS: string = "js-amplitude-viewed";
-export const DEFAULT_ON_VIEWED_SELECTOR: string = `.${DEFAULT_ON_VIEWED_CLASS}`;
-export const DEFAULT_SCROLL_TIMEOUT: number = 100;
+export const DEFAULT_ON_CLICK_CLASS = "js-amplitude-click";
+export const DEFAULT_ON_CLICK_SELECTOR = `.${DEFAULT_ON_CLICK_CLASS}`;
+export const DEFAULT_ON_HOVER_CLASS = "js-amplitude-hover";
+export const DEFAULT_ON_HOVER_SELECTOR = `.${DEFAULT_ON_HOVER_CLASS}`;
+export const DEFAULT_ON_VIEWED_CLASS = "js-amplitude-viewed";
+export const DEFAULT_ON_VIEWED_SELECTOR = `.${DEFAULT_ON_VIEWED_CLASS}`;
+export const DEFAULT_SCROLL_TIMEOUT = 100;
 
 export const DEFAULT_USE_DEFAULT_EVENT_PROPERTIES: Function = (): UseDefaultEventProperties => ({
   origin: true,
@@ -15,7 +15,7 @@ export const DEFAULT_USE_DEFAULT_EVENT_PROPERTIES: Function = (): UseDefaultEven
 
 export const NUMERIC_EVENT_PROPERTIES: Function = (): string[] => ["page"];
 
-export const DEFAULT_EXCLUDE_DATASET_KEY: string = "amplitudeExclude";
+export const DEFAULT_EXCLUDE_DATASET_KEY = "amplitudeExclude";
 export const DEFAULT_EXCLUDE_PROPERTIES: RegExp[] = [/v-.*/g];
 
 export const DEFAULT_SCROLL_STEPS: Function = (): number[] => [100, 75, 50, 25, 10];
@@ -57,6 +57,7 @@ export interface AmplitudeEvent {
 }
 
 export interface FixedEventProperties {
+  /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
   [key: string]: any;
 }
 

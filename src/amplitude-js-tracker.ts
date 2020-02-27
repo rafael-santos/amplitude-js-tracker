@@ -336,7 +336,7 @@ class AmplitudeJsTracker {
 
   _excludedGlobalDataProperties(dataProperties: DatasetObject): string[] {
     const { excludedProperties } = this.options;
-    let excludedKeys: string[] = [DEFAULT_EXCLUDE_DATASET_KEY];
+    const excludedKeys: string[] = [DEFAULT_EXCLUDE_DATASET_KEY];
 
     if (!excludedProperties) return excludedKeys;
 
@@ -354,12 +354,11 @@ class AmplitudeJsTracker {
   _parseDatasetEntries(unparsedDatasetEntries: DatasetEntry[]): ParsedDatasetEntry[] {
     const parsedEntries: ParsedDatasetEntry[] = unparsedDatasetEntries.map(
       ([key, value]): ParsedDatasetEntry => {
-        const booleanValue: RegExp = /^boolean/;
-        const numericValue: RegExp = /^numeric/;
+        const booleanValue = /^boolean/;
+        const numericValue = /^numeric/;
 
         let parsedKey: string = key;
         let parsedValue: string | number | boolean | undefined = value;
-        let parsedEntry: ParsedDatasetEntry;
 
         if (booleanValue.test(key)) {
           parsedKey = this._parseDatasetKey(key, booleanValue);
@@ -371,7 +370,7 @@ class AmplitudeJsTracker {
           if (value !== undefined) parsedValue = parseFloat(value);
         }
 
-        parsedEntry = [parsedKey, parsedValue];
+        const parsedEntry: ParsedDatasetEntry = [parsedKey, parsedValue];
 
         return parsedEntry;
       }
