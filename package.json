@@ -1,6 +1,6 @@
 {
   "name": "amplitude-js-tracker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An Amplitude Analytics library for easy tracking user events based on amplitude-js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
