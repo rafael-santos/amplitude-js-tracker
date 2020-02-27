@@ -5,10 +5,8 @@ export const isElementVisible = (element: HTMLElement | null): boolean => {
   const { visibility, opacity, display } = getComputedStyle(element);
 
   const isHidden: boolean = typeof hidden === "string";
-  const isInvisible: boolean =
-    visibility === "hidden" || visibility === "collapsed";
-  const isTransparent: boolean =
-    opacity && parseFloat(opacity) <= 0.05 ? true : false;
+  const isInvisible: boolean = visibility === "hidden" || visibility === "collapsed";
+  const isTransparent: boolean = opacity && parseFloat(opacity) <= 0.05 ? true : false;
   const isDisplayNone: boolean = display === "none";
 
   return !(isHidden || isInvisible || isTransparent || isDisplayNone);

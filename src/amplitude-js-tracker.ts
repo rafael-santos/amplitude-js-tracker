@@ -40,7 +40,6 @@ class AmplitudeJsTracker {
     this._trackedScreenElements = [];
 
     this.options = options;
-    debugger;
     this.instance = amplitude.getInstance(instanceName);
 
     if (apiKey) this.setApiKey(apiKey);
@@ -166,9 +165,7 @@ class AmplitudeJsTracker {
     if (!event || !event.currentTarget) return false;
 
     const target: HTMLElement = event.currentTarget as HTMLElement;
-    const properties: EventProperties | undefined = this._propertiesFromTarget(
-      target
-    );
+    const properties: EventProperties | undefined = this._propertiesFromTarget(target);
 
     this.logEvent(AmplitudeJsTrackerEvent.ELEMENT_CLICK, { ...properties });
 
@@ -192,9 +189,7 @@ class AmplitudeJsTracker {
     if (!event || !event.currentTarget) return false;
 
     const target: HTMLElement = event.currentTarget as HTMLElement;
-    const properties: EventProperties | undefined = this._propertiesFromTarget(
-      target
-    );
+    const properties: EventProperties | undefined = this._propertiesFromTarget(target);
 
     this.logEvent(AmplitudeJsTrackerEvent.ELEMENT_HOVER, { ...properties });
 
@@ -224,8 +219,7 @@ class AmplitudeJsTracker {
 
     const scrollStep: number | undefined = descendingScrollSteps.find(
       (value: number) =>
-        value > this._maxScreenViewedPercentual &&
-        value <= currentsSrollViewPercentual
+        value > this._maxScreenViewedPercentual && value <= currentsSrollViewPercentual
     );
 
     if (!scrollStep) return;
@@ -243,10 +237,7 @@ class AmplitudeJsTracker {
     const targetNodeList: NodeList = document.querySelectorAll(targetClass);
     const targetElements: Node[] = Array.from(targetNodeList);
 
-    this._trackedScreenElements = [
-      ...this._trackedScreenElements,
-      ...targetElements
-    ];
+    this._trackedScreenElements = [...this._trackedScreenElements, ...targetElements];
 
     this._addScrollEventListener();
 
@@ -269,16 +260,16 @@ class AmplitudeJsTracker {
   _logViewedElementEvent(): boolean {
     if (!this._trackedScreenElements.length) return false;
 
-    const viewedElements: Node[] = this._trackedScreenElements.filter(
-      (element: Node) => isElementInView(element as HTMLElement)
+    const viewedElements: Node[] = this._trackedScreenElements.filter((element: Node) =>
+      isElementInView(element as HTMLElement)
     );
 
     if (!viewedElements.length) return false;
 
     viewedElements.forEach((element: Node) => {
-      const properties:
-        | EventProperties
-        | undefined = this._propertiesFromTarget(element as HTMLElement);
+      const properties: EventProperties | undefined = this._propertiesFromTarget(
+        element as HTMLElement
+      );
 
       this.logEvent(AmplitudeJsTrackerEvent.ELEMENT_VIEW, { ...properties });
     });
@@ -303,9 +294,7 @@ class AmplitudeJsTracker {
       allowedDatasetEntries
     );
 
-    const properties: EventProperties = Object.fromEntries(
-      parsedDatasetEntries
-    );
+    const properties: EventProperties = Object.fromEntries(parsedDatasetEntries);
 
     return properties;
   }
@@ -362,9 +351,7 @@ class AmplitudeJsTracker {
     return excludedKeys;
   }
 
-  _parseDatasetEntries(
-    unparsedDatasetEntries: DatasetEntry[]
-  ): ParsedDatasetEntry[] {
+  _parseDatasetEntries(unparsedDatasetEntries: DatasetEntry[]): ParsedDatasetEntry[] {
     const parsedEntries: ParsedDatasetEntry[] = unparsedDatasetEntries.map(
       ([key, value]): ParsedDatasetEntry => {
         const booleanValue: RegExp = /^boolean/;

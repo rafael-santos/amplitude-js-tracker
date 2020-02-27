@@ -1,17 +1,17 @@
 {
   "name": "amplitude-js-tracker",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "An Amplitude Analytics library for easy tracking user events based on amplitude-js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": [
-    "/dist"
-  ],
+  "private": true,
   "scripts": {
-    "test": "jest --coverage",
-    "test:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+    "test:unit": "jest --coverage",
+    "test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
     "build": "tsc",
-    "prepare": "npm run test && npm run build"
+    "prepare": "npm run test:unit && npm run build"
   },
   "repository": {
     "type": "git",
@@ -30,15 +30,25 @@
   },
   "homepage": "https://github.com/rafael-santos/amplitude-js-tracker#readme",
   "dependencies": {
-    "amplitude-js": "^5.8.0",
+    "amplitude-js": "^5.9.0",
     "tti-polyfill": "^0.2.2"
   },
   "devDependencies": {
-    "@types/amplitude-js": "^4.4.5",
+    "@types/amplitude-js": "^5.8.0",
+    "@types/jest": "^24.0.19",
     "@types/tti-polyfill": "^0.2.0",
-    "@types/jest": "^24.0.24",
-    "jest": "^24.9.0",
-    "ts-jest": "^24.2.0",
-    "typescript": "^3.7.4
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "@vue/cli-plugin-eslint": "^4.2.0",
+    "@vue/cli-plugin-typescript": "^4.2.0",
+    "@vue/cli-plugin-unit-jest": "^4.2.0",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^5.0.1",
+    "eslint": "^6.7.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-vue": "^6.1.2",
+    "prettier": "^1.19.1",
+    "typescript": "~3.7.5",
+    "vue-template-compiler": "^2.6.11"
   }
 }
