@@ -78,44 +78,27 @@ describe("#DEFAULT_OPTIONS", () => {
 describe("AmplitudeJsTracker", () => {
   describe("#constructor", () => {
     it("calls _bindFunctions() to bound necessary function's scope ", () => {
+      const expected: string = "bound ";
       const result: AmplitudeJsTracker = new AmplitudeJsTracker();
 
-      expect(result._afterInitialize.name).toEqual("bound _afterInitialize");
-      expect(result._scrollEventHandler.name).toEqual(
-        "bound _scrollEventHandler"
-      );
-      expect(result._logPerformanceMetrics.name).toEqual(
-        "bound _logPerformanceMetrics"
-      );
-      expect(result._logScreenViews.name).toEqual("bound _logScreenViews");
-      expect(result._logScrollMap.name).toEqual("bound _logScrollMap");
-      expect(result._logViewedElementEvent.name).toEqual(
-        "bound _logViewedElementEvent"
-      );
+      expect(result._afterInitialize.name).toEqual(expected);
+      expect(result._scrollEventHandler.name).toEqual(expected);
+      expect(result._logPerformanceMetrics.name).toEqual(expected);
+      expect(result._logScreenViews.name).toEqual(expected);
+      expect(result._logScrollMap.name).toEqual(expected);
+      expect(result._logViewedElementEvent.name).toEqual(expected);
 
-      expect(result.track.name).toEqual("bound track");
-      expect(result.logEvent.name).toEqual("bound logEvent");
-      expect(result.logPageView.name).toEqual("bound logPageView");
-      expect(result.trackClickOnElement.name).toEqual(
-        "bound trackClickOnElement"
-      );
-      expect(result.logClickedElementEvent.name).toEqual(
-        "bound logClickedElementEvent"
-      );
-      expect(result.trackHoverOnElement.name).toEqual(
-        "bound trackHoverOnElement"
-      );
-      expect(result.logHoveredElementEvent.name).toEqual(
-        "bound logHoveredElementEvent"
-      );
-      expect(result.trackScreenViews.name).toEqual("bound trackScreenViews");
-      expect(result.trackScrollMap.name).toEqual("bound trackScrollMap");
-      expect(result.trackScreenElementView.name).toEqual(
-        "bound trackScreenElementView"
-      );
-      expect(result.trackPerformanceMetrics.name).toEqual(
-        "bound trackPerformanceMetrics"
-      );
+      expect(result.track.name).toEqual(expected);
+      expect(result.logEvent.name).toEqual(expected);
+      expect(result.logPageView.name).toEqual(expected);
+      expect(result.trackClickOnElement.name).toEqual(expected);
+      expect(result.logClickedElementEvent.name).toEqual(expected);
+      expect(result.trackHoverOnElement.name).toEqual(expected);
+      expect(result.logHoveredElementEvent.name).toEqual(expected);
+      expect(result.trackScreenViews.name).toEqual(expected);
+      expect(result.trackScrollMap.name).toEqual(expected);
+      expect(result.trackScreenElementView.name).toEqual(expected);
+      expect(result.trackPerformanceMetrics.name).toEqual(expected);
     });
 
     it("works when called without any optional param", () => {
@@ -134,10 +117,7 @@ describe("AmplitudeJsTracker", () => {
         eventPrefix: "[FBO]"
       };
 
-      const result: AmplitudeJsTracker = new AmplitudeJsTracker(
-        undefined,
-        options
-      );
+      const result: AmplitudeJsTracker = new AmplitudeJsTracker(undefined, options);
 
       expect(result.options).toEqual(options);
     });
@@ -146,14 +126,9 @@ describe("AmplitudeJsTracker", () => {
       const instanceName: string = "named-instance-test";
       const namedOption: Options = { instanceName };
 
-      const result: AmplitudeJsTracker = new AmplitudeJsTracker(
-        undefined,
-        namedOption
-      );
+      const result: AmplitudeJsTracker = new AmplitudeJsTracker(undefined, namedOption);
 
-      const expected: amplitude.AmplitudeClient = amplitude.getInstance(
-        instanceName
-      );
+      const expected: amplitude.AmplitudeClient = amplitude.getInstance(instanceName);
 
       expect(result.instance).toEqual(expected);
     });
@@ -171,10 +146,7 @@ describe("AmplitudeJsTracker", () => {
         includeUtm: true
       };
 
-      const result: AmplitudeJsTracker = new AmplitudeJsTracker(
-        apiKey,
-        options
-      );
+      const result: AmplitudeJsTracker = new AmplitudeJsTracker(apiKey, options);
 
       expect(result.instance.options).toEqual(expect.objectContaining(options));
     });
@@ -220,16 +192,12 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.trackClickOnElement = jest.fn();
       amplitudeJsTracker.trackHoverOnElement = jest.fn();
       amplitudeJsTracker.trackScreenViews = jest.fn();
-      amplitudeJsTracker.trackPerformanceMetrics = jest.fn();
 
       amplitudeJsTracker.track();
 
       expect(amplitudeJsTracker.trackClickOnElement).toHaveBeenCalledTimes(1);
       expect(amplitudeJsTracker.trackHoverOnElement).toHaveBeenCalledTimes(1);
       expect(amplitudeJsTracker.trackScreenViews).toHaveBeenCalledTimes(1);
-      expect(amplitudeJsTracker.trackPerformanceMetrics).toHaveBeenCalledTimes(
-        1
-      );
     });
   });
 
@@ -277,9 +245,7 @@ describe("AmplitudeJsTracker", () => {
     beforeEach(() => {
       amplitudeJsTracker = new AmplitudeJsTracker();
       amplitudeJsTracker._logOrQueueEvent = jest.fn();
-      amplitudeJsTracker._defaultEventProperties = jest
-        .fn()
-        .mockReturnValue({});
+      amplitudeJsTracker._defaultEventProperties = jest.fn().mockReturnValue({});
     });
 
     it("concats event name with options.eventPrefix when specified", () => {
@@ -291,10 +257,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.options = options;
       amplitudeJsTracker.logEvent(name);
 
-      expect(amplitudeJsTracker._logOrQueueEvent).toHaveBeenCalledWith(
-        expected,
-        {}
-      );
+      expect(amplitudeJsTracker._logOrQueueEvent).toHaveBeenCalledWith(expected, {});
     });
 
     it("merges event properties with options.fixedEventProperties and defaultEventProperties when specified", () => {
@@ -331,10 +294,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.options = options;
       amplitudeJsTracker.logEvent(name, properties);
 
-      expect(amplitudeJsTracker._logOrQueueEvent).toHaveBeenCalledWith(
-        name,
-        expected
-      );
+      expect(amplitudeJsTracker._logOrQueueEvent).toHaveBeenCalledWith(name, expected);
     });
   });
 
@@ -365,10 +325,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker._logOrQueueEvent(name, properties);
 
       expect(amplitudeJsTracker.instance.logEvent).not.toHaveBeenCalled();
-      expect(amplitudeJsTracker._queueEvent).toHaveBeenCalledWith(
-        name,
-        properties
-      );
+      expect(amplitudeJsTracker._queueEvent).toHaveBeenCalledWith(name, properties);
     });
   });
 
@@ -449,10 +406,7 @@ describe("AmplitudeJsTracker", () => {
       );
 
       expect(addEventListenerMock).toHaveBeenCalledTimes(2);
-      expect(addEventListenerMock).toHaveBeenCalledWith(
-        eventName,
-        eventHandlerMock
-      );
+      expect(addEventListenerMock).toHaveBeenCalledWith(eventName, eventHandlerMock);
     });
   });
 
@@ -547,9 +501,7 @@ describe("AmplitudeJsTracker", () => {
       const htmlElement: string = `<div id="${elementId}"></div>`;
       document.body.innerHTML = htmlElement;
 
-      const target: HTMLElement = document.getElementById(
-        elementId
-      ) as HTMLElement;
+      const target: HTMLElement = document.getElementById(elementId) as HTMLElement;
 
       const event: Event = ({
         currentTarget: target
@@ -567,9 +519,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.logClickedElementEvent(event);
 
       expect(amplitudeJsTracker._propertiesFromTarget).toHaveBeenCalledTimes(1);
-      expect(amplitudeJsTracker._propertiesFromTarget).toHaveBeenCalledWith(
-        target
-      );
+      expect(amplitudeJsTracker._propertiesFromTarget).toHaveBeenCalledWith(target);
       expect(amplitudeJsTracker.logEvent).toHaveBeenCalledTimes(1);
       expect(amplitudeJsTracker.logEvent).toHaveBeenCalledWith(
         expectedName,
@@ -669,9 +619,7 @@ describe("AmplitudeJsTracker", () => {
       const htmlElement: string = `<div id="${elementId}"></div>`;
       document.body.innerHTML = htmlElement;
 
-      const target: HTMLElement = document.getElementById(
-        elementId
-      ) as HTMLElement;
+      const target: HTMLElement = document.getElementById(elementId) as HTMLElement;
 
       const event: Event = ({
         currentTarget: target
@@ -706,9 +654,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.trackScreenViews();
 
       expect(amplitudeJsTracker.trackScrollMap).toHaveBeenCalledTimes(1);
-      expect(amplitudeJsTracker.trackScreenElementView).toHaveBeenCalledTimes(
-        1
-      );
+      expect(amplitudeJsTracker.trackScreenElementView).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -722,9 +668,7 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker._logScreenViews();
 
       expect(amplitudeJsTracker._logScrollMap).toHaveBeenCalledTimes(1);
-      expect(amplitudeJsTracker._logViewedElementEvent).toHaveBeenCalledTimes(
-        1
-      );
+      expect(amplitudeJsTracker._logViewedElementEvent).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -738,17 +682,12 @@ describe("AmplitudeJsTracker", () => {
       amplitudeJsTracker.trackScrollMap();
 
       expect(amplitudeJsTracker._maxScreenViewedPercentual).toEqual(0);
-      expect(amplitudeJsTracker._addScrollEventListener).toHaveBeenCalledTimes(
-        1
-      );
+      expect(amplitudeJsTracker._addScrollEventListener).toHaveBeenCalledTimes(1);
     });
   });
 
   describe("#_logScrollMap", () => {
-    const scrollViewPercentual = jest.spyOn(
-      AmplitudeJsUtils,
-      "scrollViewPercentual"
-    );
+    const scrollViewPercentual = jest.spyOn(AmplitudeJsUtils, "scrollViewPercentual");
 
     let amplitudeJsTracker: AmplitudeJsTracker;
 
@@ -774,9 +713,7 @@ describe("AmplitudeJsTracker", () => {
     it("calls _descendingScrollSteps() to get sorted options.scrollSteps", () => {
       amplitudeJsTracker._logScrollMap();
 
-      expect(amplitudeJsTracker._descendingScrollSteps).toHaveBeenCalledTimes(
-        1
-      );
+      expect(amplitudeJsTracker._descendingScrollSteps).toHaveBeenCalledTimes(1);
     });
 
     it("calls scrollViewPercentual() utils to get scroll viewed percentual", () => {
@@ -899,12 +836,8 @@ describe("AmplitudeJsTracker", () => {
 
       const result = amplitudeJsTracker._trackedScreenElements;
 
-      expect(result).toEqual(
-        expect.arrayContaining(defaultTrackedScreenElements)
-      );
-      expect(result).toEqual(
-        expect.arrayContaining(customTrackedScreenElements)
-      );
+      expect(result).toEqual(expect.arrayContaining(defaultTrackedScreenElements));
+      expect(result).toEqual(expect.arrayContaining(customTrackedScreenElements));
     });
   });
 
@@ -933,9 +866,7 @@ describe("AmplitudeJsTracker", () => {
 
       setTimeout(() => {
         expect(mockCollectPerformanceMetrics).toHaveBeenCalledTimes(1);
-        expect(amplitudeJsTracker._logPerformanceMetrics).toHaveBeenCalledTimes(
-          1
-        );
+        expect(amplitudeJsTracker._logPerformanceMetrics).toHaveBeenCalledTimes(1);
         done();
       }, 0);
     });
@@ -1047,9 +978,7 @@ describe("AmplitudeJsTracker", () => {
     beforeEach(() => {
       amplitudeJsTracker = new AmplitudeJsTracker();
 
-      amplitudeJsTracker._excludedDataProperties = jest
-        .fn()
-        .mockReturnValue([]);
+      amplitudeJsTracker._excludedDataProperties = jest.fn().mockReturnValue([]);
     });
 
     it("returns undefined if element param has no dataset attribute", () => {
@@ -1066,9 +995,7 @@ describe("AmplitudeJsTracker", () => {
       const htmlElement: string = `<div id="${elementId}"></div>`;
       document.body.innerHTML = htmlElement;
 
-      const target: HTMLElement = document.getElementById(
-        elementId
-      ) as HTMLElement;
+      const target: HTMLElement = document.getElementById(elementId) as HTMLElement;
 
       const expected: EventProperties = {};
       const result:
@@ -1086,9 +1013,7 @@ describe("AmplitudeJsTracker", () => {
 
       document.body.innerHTML = htmlElement;
 
-      const target: HTMLElement = document.getElementById(
-        elementId
-      ) as HTMLElement;
+      const target: HTMLElement = document.getElementById(elementId) as HTMLElement;
 
       const expected: EventProperties = {
         description: dataDescription,
@@ -1102,9 +1027,9 @@ describe("AmplitudeJsTracker", () => {
     });
 
     it("excludes all element properties returned by ", () => {
-      (amplitudeJsTracker._excludedDataProperties as jest.Mock).mockReturnValue(
-        ["href"]
-      );
+      (amplitudeJsTracker._excludedDataProperties as jest.Mock).mockReturnValue([
+        "href"
+      ]);
 
       const htmlElement: string = `<div id="${elementId}"
                              data-description="${dataDescription}"
@@ -1113,9 +1038,7 @@ describe("AmplitudeJsTracker", () => {
 
       document.body.innerHTML = htmlElement;
 
-      const target: HTMLElement = document.getElementById(
-        elementId
-      ) as HTMLElement;
+      const target: HTMLElement = document.getElementById(elementId) as HTMLElement;
 
       const expected: EventProperties = {
         description: dataDescription
@@ -1153,9 +1076,7 @@ describe("AmplitudeJsTracker", () => {
     it("returns empty Array if options.excludedProperties is not defined and element has no amplitudeExclude dataset", () => {
       amplitudeJsTracker.options.excludedProperties = undefined;
 
-      const result: string[] = amplitudeJsTracker._excludedDataProperties(
-        element
-      );
+      const result: string[] = amplitudeJsTracker._excludedDataProperties(element);
 
       expect(result).toEqual([]);
     });
@@ -1169,9 +1090,9 @@ describe("AmplitudeJsTracker", () => {
 
       result = amplitudeJsTracker._excludedDataProperties(element);
 
-      expect(
-        amplitudeJsTracker._excludedElementDataProperties
-      ).toHaveBeenCalledTimes(1);
+      expect(amplitudeJsTracker._excludedElementDataProperties).toHaveBeenCalledTimes(
+        1
+      );
       expect(result).toEqual(expected);
     });
 
@@ -1183,9 +1104,7 @@ describe("AmplitudeJsTracker", () => {
 
       result = amplitudeJsTracker._excludedDataProperties(element);
 
-      expect(
-        amplitudeJsTracker._excludedGlobalDataProperties
-      ).toHaveBeenCalledTimes(1);
+      expect(amplitudeJsTracker._excludedGlobalDataProperties).toHaveBeenCalledTimes(1);
       expect(result).toEqual(expected);
     });
   });
@@ -1207,15 +1126,15 @@ describe("AmplitudeJsTracker", () => {
       expect(amplitudeJsTracker._excludedElementDataProperties("key1")).toEqual(
         expectedSingle
       );
-      expect(
-        amplitudeJsTracker._excludedElementDataProperties("[key1]")
-      ).toEqual(expectedSingle);
-      expect(
-        amplitudeJsTracker._excludedElementDataProperties(`["key1"]`)
-      ).toEqual(expectedSingle);
-      expect(
-        amplitudeJsTracker._excludedElementDataProperties(`['key1']`)
-      ).toEqual(expectedSingle);
+      expect(amplitudeJsTracker._excludedElementDataProperties("[key1]")).toEqual(
+        expectedSingle
+      );
+      expect(amplitudeJsTracker._excludedElementDataProperties(`["key1"]`)).toEqual(
+        expectedSingle
+      );
+      expect(amplitudeJsTracker._excludedElementDataProperties(`['key1']`)).toEqual(
+        expectedSingle
+      );
 
       const expectedMultiple: string[] = ["key1", "key2", "key3"];
 
@@ -1229,14 +1148,10 @@ describe("AmplitudeJsTracker", () => {
         amplitudeJsTracker._excludedElementDataProperties("[key1, key2, key3]")
       ).toEqual(expectedMultiple);
       expect(
-        amplitudeJsTracker._excludedElementDataProperties(
-          `["key1", "key2", "key3"]`
-        )
+        amplitudeJsTracker._excludedElementDataProperties(`["key1", "key2", "key3"]`)
       ).toEqual(expectedMultiple);
       expect(
-        amplitudeJsTracker._excludedElementDataProperties(
-          `['key1', 'key2', 'key3']`
-        )
+        amplitudeJsTracker._excludedElementDataProperties(`['key1', 'key2', 'key3']`)
       ).toEqual(expectedMultiple);
     });
   });
@@ -1251,9 +1166,7 @@ describe("AmplitudeJsTracker", () => {
     it("returns Array with DEFAULT_EXCLUDE_DATASET_KEY if received param is empty", () => {
       const expected = [DEFAULT_EXCLUDE_DATASET_KEY];
 
-      expect(amplitudeJsTracker._excludedGlobalDataProperties({})).toEqual(
-        expected
-      );
+      expect(amplitudeJsTracker._excludedGlobalDataProperties({})).toEqual(expected);
     });
 
     it("returns Array with DEFAULT_EXCLUDE_DATASET_KEY if options.excludedProperties is not defined", () => {
@@ -1274,18 +1187,13 @@ describe("AmplitudeJsTracker", () => {
         "v-23212": ""
       };
 
-      const expected = [
-        DEFAULT_EXCLUDE_DATASET_KEY,
-        "href",
-        "v-12398",
-        "v-23212"
-      ];
+      const expected = [DEFAULT_EXCLUDE_DATASET_KEY, "href", "v-12398", "v-23212"];
 
       amplitudeJsTracker.options.excludedProperties = [/hr.*/, /v-.*/];
 
-      expect(
-        amplitudeJsTracker._excludedGlobalDataProperties(dataProperties)
-      ).toEqual(expected);
+      expect(amplitudeJsTracker._excludedGlobalDataProperties(dataProperties)).toEqual(
+        expected
+      );
     });
   });
 
@@ -1367,10 +1275,7 @@ describe("AmplitudeJsTracker", () => {
       const unparsedKey: string = "forbiddenMasterKey";
       const expected: string = "masterKey";
 
-      const result = amplitudeJsTracker._parseDatasetKey(
-        unparsedKey,
-        forbiddenValue
-      );
+      const result = amplitudeJsTracker._parseDatasetKey(unparsedKey, forbiddenValue);
 
       expect(result).toEqual(expected);
     });
@@ -1535,9 +1440,7 @@ describe("AmplitudeJsTracker", () => {
         amplitudeJsTracker._logScreenViews,
         scrollTimeout
       );
-      expect(amplitudeJsTracker._currentScrollTimeout).toBe(
-        currentScrollTimeout
-      );
+      expect(amplitudeJsTracker._currentScrollTimeout).toBe(currentScrollTimeout);
     });
   });
 

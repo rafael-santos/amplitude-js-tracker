@@ -1,25 +1,23 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "./dist",
+    "target": "es5",
     "module": "commonjs",
+    "declaration": true,
     "strict": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
     "noImplicitAny": true,
+    "importHelpers": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "target": "es5",
-    "outDir": "./dist",
-    "lib": ["esnext", "es7", "es6", "dom"],
     "baseUrl": ".",
-    "types": ["jest"],
+    "types": ["webpack-env", "jest"],
+    "typeRoots": ["./node_modules/@types", "./src/@types"],
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "lib": ["esnext", "es7", "es6", "dom"]
   },
-  "typedocOptions": {
-    "mode": "modules",
-    "out": "docs"
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "tests/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "tests/**/*.tsx"],
+  "exclude": ["node_modules", "dist"]
 }

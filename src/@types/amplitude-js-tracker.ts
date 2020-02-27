@@ -18,13 +18,7 @@ export const NUMERIC_EVENT_PROPERTIES: Function = (): string[] => ["page"];
 export const DEFAULT_EXCLUDE_DATASET_KEY: string = "amplitudeExclude";
 export const DEFAULT_EXCLUDE_PROPERTIES: RegExp[] = [/v-.*/g];
 
-export const DEFAULT_SCROLL_STEPS: Function = (): number[] => [
-  100,
-  75,
-  50,
-  25,
-  10
-];
+export const DEFAULT_SCROLL_STEPS: Function = (): number[] => [100, 75, 50, 25, 10];
 
 export const DEFAULT_OPTIONS = (): Options => ({
   useDefaultEventProperties: DEFAULT_USE_DEFAULT_EVENT_PROPERTIES(),
@@ -75,9 +69,7 @@ export interface DefaultEventProperties {
   pagePath?: string;
 }
 
-export interface EventProperties
-  extends DefaultEventProperties,
-    PerformanceMetrics {
+export interface EventProperties extends DefaultEventProperties, PerformanceMetrics {
   description?: string;
   value?: number;
   href?: string;
@@ -93,10 +85,7 @@ export interface PerformanceMetrics {
 
 export type DatasetObject = Record<string, string | undefined>;
 export type DatasetEntry = [string, string | undefined];
-export type ParsedDatasetEntry = [
-  string,
-  string | number | boolean | undefined
-];
+export type ParsedDatasetEntry = [string, string | number | boolean | undefined];
 
 export enum PaintMetric {
   FIRST_PAINT = "first-paint",

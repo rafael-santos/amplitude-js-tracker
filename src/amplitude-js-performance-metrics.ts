@@ -10,9 +10,7 @@ class AmplitudeJsPerformanceMetrics {
   };
 
   constructor() {
-    this._performanceObserverCallback = this._performanceObserverCallback.bind(
-      this
-    );
+    this._performanceObserverCallback = this._performanceObserverCallback.bind(this);
   }
 
   collectPerformanceMetrics(): Promise<PerformanceMetrics> {
