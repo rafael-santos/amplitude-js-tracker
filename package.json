@@ -1,15 +1,15 @@
 {
   "name": "amplitude-js-tracker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Amplitude Analytics library for easy tracking user events based on amplitude-js",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "private": true,
   "scripts": {
     "test:unit": "jest --coverage",
     "test:unit:debugger": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint \"src/**/*.ts\"",
+    "lint:fix": "eslint \"src/**/*.ts\" --fix",
     "build": "tsc",
     "prepare": "npm run test:unit && npm run build"
   },
@@ -44,11 +44,24 @@
     "@vue/cli-plugin-unit-jest": "^4.2.0",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^5.0.1",
+    "commitizen": "^4.0.3",
+    "cz-customizable": "^6.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^6.1.2",
+    "husky": "^4.2.3",
     "prettier": "^1.19.1",
     "typescript": "~3.7.5",
     "vue-template-compiler": "^2.6.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
   }
 }
