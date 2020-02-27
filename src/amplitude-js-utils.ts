@@ -14,8 +14,8 @@ export const isElementVisible = (element: HTMLElement | null): boolean => {
 
 export const isElementInView = (
   element: HTMLElement | null,
-  partialyVisible: boolean = false,
-  minVisibleHeight: number = 24
+  partialyVisible = false,
+  minVisibleHeight = 24
 ): boolean => {
   if (!element || !isElementVisible) return false;
 
